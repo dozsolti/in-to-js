@@ -1,10 +1,10 @@
-import { Parser } from '../../index';
-import { readFile } from '../utils';
+import { InToJSParser } from '../../index';
+import { readFile } from '../../test_utils';
 
 test("should read name", () => {
     const s = readFile('src/__tests__/in_files/strings/name.in');
 
-    const data = Parser.create(s)
+    const data = InToJSParser.create(s)
         .string("name")
         .build();
 
@@ -14,7 +14,7 @@ test("should read name", () => {
 test("should read all 3 names", () => {
     const s = readFile('src/__tests__/in_files/strings/names.in');
 
-    const data = Parser.create(s)
+    const data = InToJSParser.create(s)
         .string("name1")
         .string("name2")
         .string("name3")
@@ -28,7 +28,7 @@ test("should read all 3 names", () => {
 test("should read lorem ipsum", () => {
     const s = readFile('src/__tests__/in_files/strings/lorem_ipsum.in');
 
-    const data = Parser.create(s)
+    const data = InToJSParser.create(s)
         .string("lorem")
         .build();
 

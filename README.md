@@ -6,28 +6,41 @@ Convert any .in/.txt files into a javascript object in seconds.
 ### Example
 
 ```ts
-const s = fs.readFileSync('ghosts.in', { encoding: 'utf-8' }).split("\n");
+const s = fs.readFileSync('ghosts.in',{encoding: 'utf-8'}).split("\n");
 
-const data = Parser.create(s)
-    .number('ghostCount')
-    .arrayOfObject("ghosts", 'ghostCount', (P) =>
+const data = InToJSParser.create(s)
+    .number("ghostCount")
+    .arrayOfObject("ghosts", "ghostCount", P =>
         P
-        .numbers('x y')
-        .number("stepCount")
-        .array("path")
+            .string('name')
+            .numbers('x y')
+            .number('walkingSpeed')
+            .array('path')
     )
     .build();
 
-// Ex. data.ghosts[3].x
+/* Results:
+
+    data.ghostCount = 5;
+    data.ghosts = [{
+            name: "Casper",
+            x: 10,
+            y: 2,
+            walkingSpeed: 10,
+            path: "UDLRUDL"
+        },
+        ...
+    ];
+*/
 ```
 
   
 
-### Functions
+## Functions
 
   
 
-#### Number
+### Number
 **number(name: string)**
 Parses one number on that line
 
@@ -36,36 +49,36 @@ Parses one number on that line
 |--|--| -- |
 | `.number('n')` | 50  | `data.n = 50`
 
-  
 
-#### Numbers
+### Numbers
 **numbers(names: string, splitBy = ' ')**
 |Parser| Line .in file | Result |
 |--|--| -- |
 | `.number('x y')` | 7 13  | `data.x = 7, data.y = 13` 
 | `.number('x/y', '/')` | 1/3  | `data.x = 1, data.y = 3` 
 
-#### Skip  
+### Skip  
 **skip(length: number | string = 1)**
 |Parser| Line .in file | Result |
 |--|--| -- |
 | `.skip()` | ignore-me| Skips one line
-| `.skip(3)` | ignore-me  | Skips multiple lines
+| `.skip(3)` | ... | Skips multiple lines
+| `.number('n').skip('n')` | ... | Skips `n` number of lines
 
-#### String
+### String
 **string(name: string)**
 |Parser| Line .in file | Result |
 |--|--| -- |
 | `.string('s')` | turn left  | `data.s = "turn left"`
 
-#### Array
+### Array
 **array(name: string, splitBy = '', mapFunc?: (x: string) => any)**
 |Parser| Line .in file | Result |
 |--|--| -- |
 | `.array('arr')` | LRLRLLRDUU  | `data.arr = ['L', 'R', 'L', 'R', 'L', 'L', 'R', 'D', 'U', 'U']`
 | `.array('arr', ' ', x => x*10)` | 1 2 3 4| `data.arr = [10, 20, 30, 40]`
 
-#### Lines
+### Lines
 **lines(name: string, length: number | string, mapFunc?: (line: string) =>  any)**
 |Parser| Lines .in file | Result |
 |--|--| -- |
