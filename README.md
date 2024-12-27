@@ -1,11 +1,44 @@
 
-# in-to-js
+# in-to-js Parser
 
-Convert any .in/.txt files into a javascript object in seconds.
+Convert any .in/.txt files into a javascript/typescript object. Ideal for low-level js developers who frequently work with files or coding contest participants.
 
-### Example
+<div align="center">
 
-```ts
+![npm](https://img.shields.io/npm/dm/in-to-js?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues-raw/dozsolti/in-to-js?color=red&style=flat-square)
+![npm](https://img.shields.io/npm/l/in-to-js?style=flat-square)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](#)
+
+</div>
+
+![Demo](./cover.png)
+
+
+## Features
+
+ - ✅ Ready to use
+ - ⚙ Typescript support
+ - 🚀 No external libraries
+ - 💡 Open for more. Request a feature in the issues tab.
+ - 📝 MIT license 
+
+## Install
+
+```bash
+# Via npm:
+npm install in-to-js
+
+# Via yarn:
+yarn add in-to-js
+```
+
+
+## Usage
+```jsx
+import * as fs from 'fs';
+import { InToJSParser } from 'in-to-js';
+
 const s = fs.readFileSync('ghosts.in',{encoding: 'utf-8'}).split("\n");
 
 const data = InToJSParser.create(s)
@@ -18,6 +51,7 @@ const data = InToJSParser.create(s)
             .array('path')
     )
     .build();
+
 
 /* Results:
 
@@ -32,13 +66,10 @@ const data = InToJSParser.create(s)
         ...
     ];
 */
+
 ```
 
-  
-
-## Functions
-
-  
+## Functions  
 
 ### Number
 **number(name: string)**
@@ -97,3 +128,15 @@ Parses one number on that line
 |Parser| Lines .in file | Result |
 |--|--| -- |
 | `.arrayOfObject("ghosts", 'ghostCount', (P) =>`<br>`P`<br>`.numbers('x y')`<br>`.number("stepCount")`<br>`.array("path")`<br>`)` | 10 14<br>30<br> UUDULLRLLRRRDDUDDUUULLLUUDDRLR| `data.ghosts = [ {`<br>` x:10, y:14,`<br>`stepCount: 30,`<br>`path: ['U','U','D','U','L','L','R','L','L','R','R','R','D','D','U','D','D','U','U','U','L','L','L','U','U','D','D','R','L','R']  } ]`
+
+## FAQ
+
+❓ **Where can I find more examples?**  
+💬 Use the link below: 
+* [Tests folder](./src/__tests__/tests/)
+
+❓ **What node versions does this package support?**  
+💬 This project doesn't use external libraries or node functions. It uses only pure javascript, so it should work with any version. Let me know in the issues tab if you face any problems.
+
+❓ **Are ideas welcome?**  
+💬 We value all ideas, improvements, suggestions and pull requests ❤️.

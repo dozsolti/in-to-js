@@ -1,6 +1,6 @@
 {
   "name": "in-to-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parse input/text files to js.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -22,9 +22,18 @@
   ],
   "keywords": [
     "typescript",
-    "npm",
-    "ts"
+    "ts",
+    "input",
+    "file",
+    "parser",
+    ".in file",
+    "text file",
+    "txt"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dozsolti/in-to-js.git"
+  },
   "author": "Zsolt Domotor",
   "license": "MIT",
   "devDependencies": {
@@ -32,15 +41,12 @@
     "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
-    "ansi-regex": ">=6.0.1",
     "eslint": "^8.33.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "jest": "^29.4.1",
-    "ts-jest": "^29.0.5",
+    "ts-jest": "^29.2.5",
     "typescript": "^4.9.5"
   }
 }
